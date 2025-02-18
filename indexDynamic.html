@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мій сайт</title>
+  <meta name="description" content="Приклад HTML-сторінки з семантичною структурою">
+  <!-- Підключення зовнішніх стилів (за необхідності) -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header: Шапка сайту з логотипом та навігацією -->
+  <header>
+    <!-- Логотип сайту -->
+    <div class="logo">
+      <img src="https://duikt.edu.ua/img/logo_new.png?2" alt="Логотип сайту">
+    </div>
+    <!-- Головне меню -->
+    <nav aria-label="Головне меню">
+      <ul>
+        <li><a href="#home">Головна</a></li>
+        <li><a href="#about">Про нас</a></li>
+        <li><a href="#services">Послуги</a></li>
+        <li><a href="#blog">Блог</a></li>
+        <li><a href="#contact">Контакти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main: Головна секція з статтями -->
+  <main>
+    <section id="dynamic-posts">
+        <!-- Динамічний контент завантажуватиметься сюди за допомогою JavaScript -->
+      </section>
+  </main>
+
+  <!-- Aside: Бічна панель з додатковою інформацією -->
+  <aside>
+    <!-- Форма пошуку -->
+    <section aria-label="Пошук">
+      <h2>Пошук</h2>
+      <form action="/search" method="get">
+        <label for="search-input">Введіть запит:</label>
+        <input type="text" id="search-input" name="q" placeholder="Пошук..." required>
+        <button type="submit">Знайти</button>
+      </form>
+    </section>
+
+    <!-- Віджет соціальних мереж -->
+    <section aria-label="Соціальні мережі">
+      <h2>Ми в соцмережах</h2>
+      <ul>
+        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+      </ul>
+    </section>
+  </aside>
+
+  <!-- Footer: Підвал з контактами та копірайтом -->
+  <footer>
+    <section aria-label="Контактна інформація">
+      <h2>Контакти</h2>
+      <p>Телефон: +380123456789</p>
+      <p>Email: info@example.com</p>
+      <p>Адреса: м. Київ, вул. Прикладна, 1</p>
+    </section>
+    <p>&copy; 2025 Мій сайт. Всі права захищено.</p>
+  </footer>
+   <!-- JavaScript: Завантаження постів через API -->
+   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Виконуємо запит до API для отримання постів
+      fetch('https://dummyjson.com/posts')
+        .then(response => response.json())
+        .then(data => {
+          // Отримуємо контейнер для динамічно завантажених постів
+          const dynamicPostsContainer = document.getElementById('dynamic-posts');
+          
+          // Перебираємо кожен пост і додаємо його до контейнера
+          data.posts.forEach(post => {
+            const article = document.createElement('article');
+            
+            // Заголовок посту
+            const header = document.createElement('header');
+            const postTitle = document.createElement('h2');
+            postTitle.textContent = post.title;
+            header.appendChild(postTitle);
+            article.appendChild(header);
+            
+            // Тіло посту
+            const postBody = document.createElement('p');
+            postBody.textContent = post.body;
+            article.appendChild(postBody);
+            
+            // Додаємо статтю до контейнера
+            dynamicPostsContainer.appendChild(article);
+          });
+        })
+        .catch(error => {
+          console.error('Помилка завантаження постів:', error);
+        });
+    });
+  </script>
+</body>
+</html>
