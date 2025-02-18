@@ -1,0 +1,22 @@
+{
+  "name": "university-demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zhenyokoff/universite-demo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zhenyokoff/universite-demo/issues"
+  },
+  "homepage": "https://github.com/Zhenyokoff/universite-demo#readme",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.50.1",
+    "@types/node": "^22.13.4"
+  }
+}
